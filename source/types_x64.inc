@@ -61,7 +61,7 @@ struc PTR typename, value {
 }
 
 struc EFI_PHYSICAL_ADDRESS value {
-    . PTR VOID value
+    . PTR VOID, value
 }
 
 struc EFI_GUID data1, data2, data3, [data4] {
