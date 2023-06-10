@@ -23,7 +23,7 @@ __image_handle__ EFI_HANDLE 0
 macro uefi_use_boot_services {
     macro __init__boot_services__ \{
         mov rdi, [rdx + EFI_SYSTEM_TABLE.BootServices]
-        mov [__boot_services_table__], rdi
+        mov [__boot_services__], rdi
     \}
 __boot_services__ PTR EFI_BOOT_SERVICES, 0
 }
@@ -258,3 +258,25 @@ __MAKE_CONOUT_FUNCTION__ __EFI_CALL_2__, SetAttribute, IN ThisPtr, IN AttributeU
 __MAKE_CONOUT_FUNCTION__ __EFI_CALL_1__, ClearScreen, IN ThisPtr
 __MAKE_CONOUT_FUNCTION__ __EFI_CALL_3__, SetCursorPosition, IN ThisPtr, IN ColomnUintn, IN RowUintn
 __MAKE_CONOUT_FUNCTION__ __EFI_CALL_2__, EnableCursor, IN ThisPtr, IN VisibleBoolean
+
+macro __MAKE_BOOT_SERVICES_FUNCTION__ EFI_CALL, FUNCTION, [ARG_NAME] {
+common
+    EFI_CALL [__boot_services__], EFI_BOOT_SERVICES, FUNCTION, ARG_NAME
+    ; __MAKE_THIS_ARG_FIRST_FUNCTION__ [__boot_services__], BootServices, FUNCTION
+}
+
+__MAKE_BOOT_SERVICES_FUNCTION__ __EFI_CALL_3__, LocateProtocol, IN ProtocolPtr, IN RegistrationPtr, OUT InterfacePtrPtr
+
+macro uefi_use_graphics_output_table {
+    macro __init__graphics_output_table__ \{
+        LocateProtocol __graphics_output_protocol_guid__, 0, __graphics_output_table__
+        cmp rax, EFI_SUCCESS
+        je next
+        ConOut.ClearScreen
+        ConOut.OutputString __error_string__
+        next:
+    \}
+__error_string__ du "Failed to find GOP", 13, 10, 0
+__graphics_output_protocol_guid__ EFI_GUID EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID
+__graphics_output_table__ PTR EFI_GRAPHICS_OUTPUT_PROTOCOL, 0
+}

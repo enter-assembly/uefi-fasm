@@ -8,6 +8,8 @@ section '.data' data readable writeable
     uefi_use_system_table
     uefi_use_image_handle
     uefi_use_con_out_table
+    uefi_use_boot_services
+    uefi_use_graphics_output_table
  
 section '.text' code executable readable
  
@@ -15,8 +17,10 @@ main:
     efi_init system_table
     efi_init image_handle
     efi_init con_out_table
+    efi_init boot_services
+    efi_init graphics_output_table
 
-    ConOut.ClearScreen
+    ; ConOut.ClearScreen
     ConOut.OutputString hello_string
  
     jmp $
