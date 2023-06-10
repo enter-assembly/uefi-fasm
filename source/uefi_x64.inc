@@ -171,6 +171,34 @@ struc EFI_BOOT_SERVICES {
 }
 __STRUCT__ EFI_BOOT_SERVICES
 
+EFI_RUNTIME_SERVICES_SIGNATURE fix 0x56524553544e5552
+struc EFI_RUNTIME_SERVICES {
+    .Hdr    EFI_TABLE_HEADER
+
+    ; Time services
+    .GetTime        PTR EFI_GET_TIME
+    .SetTime        PTR EFI_SET_TIME
+    .GetWakeupTime  PTR EFI_GET_WAKEUP_TIME
+    .SetWakeupTime  PTR EFI_SET_WAKEUP_TIME
+
+    ; Virtual memory services
+    .GetVariable            PTR EFI_GET_VARIABLE
+    .GetNextVariableName    PTR EFI GET_NEXT_VARIABLE_NAME
+    .SetVariable            PTR EFI_SET_VARIABLE
+
+    ; Miscellaneous Services
+    .GetNextHighMonotonicCount  PTR EFI_GET_NEXT_HIGH_MONOTONIC_COUNT
+    .ResetSystem                PTR EFI_RESET_SYSTEM
+
+    ; UEFI 2.0 Capsule Services
+    .UpdateCapsule              PTR EFI_UPDATE_CAPSULE
+    .QueryCapsuleCapabilities   PTR EFI_QUERY_CAPSULE_CAPABILITIES
+
+    ; Miscellaneous UEFI 2.0 Service
+    .QueryVariableInfo  PTR EFI_QUERY_VARIABLE_INFO
+}
+__STRUCT__ EFI_RUNTIME_SERVICES
+
 EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID fix 0x9042a9de,0x23dc,0x4a38,0x96,0xfb,0x7a,0xde,0xd0,0x80,0x51,0x6a
 struc EFI_GRAPHICS_OUTPUT_PROTOCOL {
     .QueryMode   PTR EFI_GRAPHICS_OUTPUT_PROTOCOL_QUERY_MODE
