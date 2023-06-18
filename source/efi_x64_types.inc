@@ -1,4 +1,4 @@
-; UEFI x64 types
+; EFI x64 types
 
 macro __ALIGN__ _align {
 if ~ _align eq
@@ -106,6 +106,10 @@ struc EFI_IPv6_ADDRESS [value] {
 
 struc EFI_IP_ADDRESS [value] {
     . UINT32_ARR 4, value
+}
+
+struc EFI_SIGNATURE value {
+    . UINT64 value
 }
 
 macro ENUM enum_name, [value_name] {

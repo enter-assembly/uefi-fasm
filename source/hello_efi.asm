@@ -1,37 +1,30 @@
 format pe64 dll efi
 entry main
  
-include 'uefi_x64.inc'
-include 'func_defines.inc'
-
 section '.data' data readable writeable
-    uefi_use_system_table
-    uefi_use_image_handle
-    uefi_use_con_out_table
-    uefi_use_boot_services
-    uefi_use_graphics_output_table
+
+include 'efi_x64_types.inc'
+include 'efi_call.inc'
+include 'efi_table.inc'
+include 'efi_system_table.inc'
+include 'efi_simple_text_output_protocol.inc'
+include 'efi_console_out_table.inc'
  
 section '.text' code executable readable
- 
-main:
-    efi_init system_table
-    efi_init image_handle
-    efi_init con_out_table
-    efi_init boot_services
-    efi_init graphics_output_table
 
-    ; ConOut.ClearScreen
-    ConOut.OutputString hello_string
+main:
+    EfiSystemTable.Init
+    EfiConsoleOut.Init
+
+    EfiConsoleOut.ClearScreen
+    EfiConsoleOut.OutputString hello_string
  
     jmp $
     retn
 
 section '.data' data readable writeable
  
-GOPU EFI_GUID EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID
-GOP PTR EFI_GRAPHICS_OUTPUT_PROTOCOL 0
-
-hello_string du 'Hello World, from UEFI FASM',13,10,0
+hello_string du 'Hello, Uefi Fasm Library!!',13,10,0
 
 section '.reloc' fixups data discardable
 
