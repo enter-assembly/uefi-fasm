@@ -115,3 +115,15 @@ __EFI_CALL_4__ EFI_RUNTIME_SERVICES, ResetSystem, IN ResetType EFI_RESET_TYPE, I
 macro EfiRuntimeServices.ResetSystem ResetType, ResetStatus, DataSize, ResetData {
     EFI_RUNTIME_SERVICES_ResetSystem [__EFI_RUNTIME_SERVICES_TABLE_PTR__], ResetType, ResetStatus, DataSize, ResetData
 }
+
+; EFI_RUNTIME_SERVICES_UpdateCapsule macro
+__EFI_CALL_3__ EFI_RUNTIME_SERVICES, UpdateCapsule, IN CapsuleHeaderArray PTR PTR EFI_CAPSULE_HEADER, IN CapsuleCount UINTN, IN ScatterGatherList EFI_PHYSICAL_ADDRESS
+macro EfiRuntimeServices.UpdateCapsule CapsuleHeaderArray, CapsuleCount, ScatterGatherList {
+    EFI_RUNTIME_SERVICES_UpdateCapsule [__EFI_RUNTIME_SERVICES_TABLE_PTR__], CapsuleHeaderArray, CapsuleCount, ScatterGatherList
+}
+
+; EFI_RUNTIME_SERVICES_QueryCapsuleCapabilities macro
+__EFI_CALL_4__ EFI_RUNTIME_SERVICES, QueryCapsuleCapabilities, IN CapsuleHeaderArray PTR PTR EFI_CAPSULE_HEADER, IN CapsuleCount UINTN, OUT MaximumCapsuleSize PTR UINT64, OUT ResetType PTR EFI_RESET_TYPE
+macro EfiRuntimeServices.QueryCapsuleCapabilities CapsuleHeaderArray, CapsuleCount, MaximumCapsuleSize, ResetType {
+    EFI_RUNTIME_SERVICES_QueryCapsuleCapabilities [__EFI_RUNTIME_SERVICES_TABLE_PTR__], CapsuleHeaderArray, CapsuleCount, MaximumCapsuleSize, ResetType
+}
