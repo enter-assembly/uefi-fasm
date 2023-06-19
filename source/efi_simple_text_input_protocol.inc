@@ -18,3 +18,19 @@ macro EFI_SIMPLE_TEXT_INPUT_PROTOCOL.GetWaitForKeyEvent TABLE {
     mov rax, TABLE
     mov rax, [rax + EFI_SIMPLE_TEXT_INPUT_PROTOCOL.WaitForKeyEvent]
 }
+
+macro EFI_SIMPLE_TEXT_INPUT_PROTOCOL_InitTable TableName, Table {
+
+    macro TableName#.#Reset ExtendedVerification \{
+        EFI_SIMPLE_TEXT_INPUT_PROTOCOL_Reset [Table], [Table], ExtendedVerification
+    \}
+
+    macro TableName#.#ReadKeyStroke Key \{
+        EFI_SIMPLE_TEXT_INPUT_PROTOCOL_ReadKeyStroke [Table], [Table], Key
+    \}
+
+    macro TableName#.#GetWayForKeyEvent \{
+        EFI_SIMPLE_TEXT_INPUT_PROTOCOL.GetWaitForKeyEvent [Table]
+    \}
+
+}

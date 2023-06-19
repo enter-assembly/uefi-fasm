@@ -6,16 +6,5 @@ __EFI_CONSOLE_IN_TABLE_PTR__ PTR EFI_SIMPLE_TEXT_INPUT_PROTOCOL
 macro EfiConsoleIn.Init {
     EfiSystemTable.GetConsoleInTable
     mov [__EFI_CONSOLE_IN_TABLE_PTR__], rax
-}
-
-macro EfiConsoleIn.Reset ExtendedVerification {
-    EFI_SIMPLE_TEXT_INPUT_PROTOCOL_Reset [__EFI_CONSOLE_IN_TABLE_PTR__], [__EFI_CONSOLE_IN_TABLE_PTR__], ExtendedVerification
-}
-
-macro EfiConsoleIn.ReadKeyStroke Key {
-    EFI_SIMPLE_TEXT_INPUT_PROTOCOL_ReadKeyStroke [__EFI_CONSOLE_IN_TABLE_PTR__], [__EFI_CONSOLE_IN_TABLE_PTR__], Key
-}
-
-macro EfiConsoleIn.GetWayForKeyEvent {
-    EFI_SIMPLE_TEXT_INPUT_PROTOCOL.GetWaitForKeyEvent [__EFI_CONSOLE_IN_TABLE_PTR__]
+    EFI_SIMPLE_TEXT_INPUT_PROTOCOL_InitTable EfiConsoleIn, __EFI_CONSOLE_IN_TABLE_PTR__
 }
