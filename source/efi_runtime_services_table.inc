@@ -98,12 +98,6 @@ macro EfiRuntimeServices.SetVariable VariableName, VendorGuid, Attributes, DataS
     EFI_RUNTIME_SERVICES_SetVariable [__EFI_RUNTIME_SERVICES_TABLE_PTR__], VariableName, VendorGuid, Attributes, DataSize, Data
 }
 
-; EFI_RUNTIME_SERVICES_QueryVariableInfo macro
-__EFI_CALL_4__ EFI_RUNTIME_SERVICES, QueryVariableInfo, IN Attributes UINT32, OUT MaximumVariableStorageSize PTR UINT64, OUT RemainingVariableStorageSize PTR UINT64, OUT MaximumVariableSize PTR UINT64
-macro EfiRuntimeServices.QueryVariableInfo Attributes, MaximumVariableStorageSize, RemainingVariableStorageSize, MaximumVariableSize {
-    EFI_RUNTIME_SERVICES_QueryVariableInfo [__EFI_RUNTIME_SERVICES_TABLE_PTR__], Attributes, MaximumVariableStorageSize, RemainingVariableStorageSize, MaximumVariableSize
-}
-
 ; EFI_RUNTIME_SERVICES_GetNextHighMonotonicCount macro
 __EFI_CALL_1__ EFI_RUNTIME_SERVICES, GetNextHighMonotonicCount, OUT HighCount PTR UINT32
 macro EfiRuntimeServices.GetNextHighMonotonicCount HighCount {
@@ -126,4 +120,10 @@ macro EfiRuntimeServices.UpdateCapsule CapsuleHeaderArray, CapsuleCount, Scatter
 __EFI_CALL_4__ EFI_RUNTIME_SERVICES, QueryCapsuleCapabilities, IN CapsuleHeaderArray PTR PTR EFI_CAPSULE_HEADER, IN CapsuleCount UINTN, OUT MaximumCapsuleSize PTR UINT64, OUT ResetType PTR EFI_RESET_TYPE
 macro EfiRuntimeServices.QueryCapsuleCapabilities CapsuleHeaderArray, CapsuleCount, MaximumCapsuleSize, ResetType {
     EFI_RUNTIME_SERVICES_QueryCapsuleCapabilities [__EFI_RUNTIME_SERVICES_TABLE_PTR__], CapsuleHeaderArray, CapsuleCount, MaximumCapsuleSize, ResetType
+}
+
+; EFI_RUNTIME_SERVICES_QueryVariableInfo macro
+__EFI_CALL_4__ EFI_RUNTIME_SERVICES, QueryVariableInfo, IN Attributes UINT32, OUT MaximumVariableStorageSize PTR UINT64, OUT RemainingVariableStorageSize PTR UINT64, OUT MaximumVariableSize PTR UINT64
+macro EfiRuntimeServices.QueryVariableInfo Attributes, MaximumVariableStorageSize, RemainingVariableStorageSize, MaximumVariableSize {
+    EFI_RUNTIME_SERVICES_QueryVariableInfo [__EFI_RUNTIME_SERVICES_TABLE_PTR__], Attributes, MaximumVariableStorageSize, RemainingVariableStorageSize, MaximumVariableSize
 }
