@@ -68,4 +68,14 @@ macro EfiRuntimeServices.SetWakeupTime Enabled, TimePtr {
     EFI_RUNTIME_SERVICES_SetWakeupTime [__EFI_RUNTIME_SERVICES_TABLE_PTR__], Enabled, TimePtr
 }
 
+; EFI_RUNTIME_SERVICES_SetVirtualAddressMap macro
+__EFI_CALL_4__ EFI_RUNTIME_SERVICES, SetVirtualAddressMap, IN MemoryMapSize UINTN, IN DescriptorSize UINTN, IN DescriptorVersion UINT32, IN VirtualMap PTR EFI_MEMORY_DESCRIPTOR
+macro EfiRuntimeServices.SetVirtualAddressMap MemoryMapSize, DescriptorSize, DescriptorVersion, VirtualMapPtr {
+    EFI_RUNTIME_SERVICES_SetVirtualAddressMap [__EFI_RUNTIME_SERVICES_TABLE_PTR__], MemoryMapSize, DescriptorSize, DescriptorVersion, VirtualMapPtr
+}
 
+; EFI_RUNTIME_SERVICES_ConvertPointer macro
+__EFI_CALL_2__ EFI_RUNTIME_SERVICES, ConvertPointer, IN DebugDesposition UINTN, IN Address PTR PTR VOID
+macro EfiRuntimeServices.ConvertPointer DebugDesposition, AddressPtrPtr {
+    EFI_RUNTIME_SERVICES_ConvertPointer [__EFI_RUNTIME_SERVICES_TABLE_PTR__], DebugDesposition, AddressPtrPtr
+}
