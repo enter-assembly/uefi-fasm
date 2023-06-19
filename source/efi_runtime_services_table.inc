@@ -14,6 +14,10 @@ struc EFI_RUNTIME_SERVICES {
     .SetWakeupTime  PTR EFI_SET_WAKEUP_TIME
 
     ; Virtual memory services
+    .SetVirtualAddressMap   PTR EFI_SET_VIRTUAL_ADDRESS_MAP
+    .ConvertPointer         PTR EFI_CONVERT_POINTER
+
+    ; Variable services
     .GetVariable            PTR EFI_GET_VARIABLE
     .GetNextVariableName    PTR EFI GET_NEXT_VARIABLE_NAME
     .SetVariable            PTR EFI_SET_VARIABLE
