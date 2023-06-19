@@ -17,5 +17,5 @@ macro EfiConsoleIn.ReadKeyStroke Key {
 }
 
 macro EfiConsoleIn.GetWayForKeyEvent {
-    EFI_SIMPLE_TEXT_INPUT_PROTOCOL.WaitForKeyEvent [__EFI_CONSOLE_IN_TABLE_PTR__]
+    EFI_SIMPLE_TEXT_INPUT_PROTOCOL.GetWaitForKeyEvent [__EFI_CONSOLE_IN_TABLE_PTR__]
 }
