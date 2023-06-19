@@ -103,3 +103,15 @@ __EFI_CALL_4__ EFI_RUNTIME_SERVICES, QueryVariableInfo, IN Attributes UINT32, OU
 macro EfiRuntimeServices.QueryVariableInfo Attributes, MaximumVariableStorageSize, RemainingVariableStorageSize, MaximumVariableSize {
     EFI_RUNTIME_SERVICES_QueryVariableInfo [__EFI_RUNTIME_SERVICES_TABLE_PTR__], Attributes, MaximumVariableStorageSize, RemainingVariableStorageSize, MaximumVariableSize
 }
+
+; EFI_RUNTIME_SERVICES_GetNextHighMonotonicCount macro
+__EFI_CALL_1__ EFI_RUNTIME_SERVICES, GetNextHighMonotonicCount, OUT HighCount PTR UINT32
+macro EfiRuntimeServices.GetNextHighMonotonicCount HighCount {
+    EFI_RUNTIME_SERVICES_GetNextHighMonotonicCount [__EFI_RUNTIME_SERVICES_TABLE_PTR__], HighCount
+}
+
+; EFI_RUNTIME_SERVICES_ResetSystem macro
+__EFI_CALL_4__ EFI_RUNTIME_SERVICES, ResetSystem, IN ResetType EFI_RESET_TYPE, IN ResetStatus EFI_STATUS, IN DataSize UINTN, IN ResetData PTR VOID OPTIONAL
+macro EfiRuntimeServices.ResetSystem ResetType, ResetStatus, DataSize, ResetData {
+    EFI_RUNTIME_SERVICES_ResetSystem [__EFI_RUNTIME_SERVICES_TABLE_PTR__], ResetType, ResetStatus, DataSize, ResetData
+}
