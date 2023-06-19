@@ -39,3 +39,47 @@ macro EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.GetSimpleTextOutputModeTable EfiSimpleText
     mov rax, EfiSimpleTextOutputTable
     mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.SimpleTextOutputModeTable]
 }
+
+macro EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_InitTable TableName, Table {
+
+    macro TableName#.#Reset ExtendedVerification \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_Reset [Table], [Table], ExtendedVerification
+    \}
+
+    macro TableName#.#OutputString String \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_OutputString [Table], [Table], String
+    \}
+
+    macro TableName#.#TestString String \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_TestString [Table], [Table], String
+    \}
+
+    macro TableName#.#QueryMode ModeNumber, Columns, Rows \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_QueryMode [Table], [Table], ModeNumber, Columns, Rows
+    \}
+
+    macro TableName#.#SetMode ModeNumber \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetMode [Table], [Table], ModeNumber
+    \}
+
+    macro TableName#.#SetAttribute Attribute \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetAttribute [Table], [Table], Attribute
+    \}
+
+    macro TableName#.#ClearScreen \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_ClearScreen [Table], [Table]
+    \}
+
+    macro TableName#.#SetCursorPosition Column, Row \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetCursorPosition [Table], [Table], Column, Row
+    \}
+
+    macro TableName#.#EnableCursor Visible \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_EnableCursor [Table], [Table], Visible
+    \}
+
+    macro TableName#.#GetSimpleTextOutputModeTable \{
+        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.GetSimpleTextOutputModeTable [Table]
+    \}
+
+}
