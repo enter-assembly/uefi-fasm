@@ -79,3 +79,27 @@ __EFI_CALL_2__ EFI_RUNTIME_SERVICES, ConvertPointer, IN DebugDesposition UINTN, 
 macro EfiRuntimeServices.ConvertPointer DebugDesposition, AddressPtrPtr {
     EFI_RUNTIME_SERVICES_ConvertPointer [__EFI_RUNTIME_SERVICES_TABLE_PTR__], DebugDesposition, AddressPtrPtr
 }
+
+; EFI_RUNTIME_SERVICES_GetVariable macro
+__EFI_CALL_5__ EFI_RUNTIME_SERVICES, GetVariable, IN VariableName PTR CHAR16, IN VendorGuid PTR EFI_GUID, OUT Attributes PTR UINT32 OPTIONAL, IN OUT DataSize PTR UINTN, OUT Data PTR VOID
+macro EfiRuntimeServices.GetVariable VariableName, VendorGuid, Attributes, DataSize, Data {
+    EFI_RUNTIME_SERVICES_GetVariable [__EFI_RUNTIME_SERVICES_TABLE_PTR__], VariableName, VendorGuid, Attributes, DataSize, Data
+}
+
+; EFI_RUNTIME_SERVICES_GetNexVariableName macro
+__EFI_CALL_3__ EFI_RUNTIME_SERVICES, GetNextVariableName, IN OUT VariableNameSize PTR UINTN, IN OUT VariableName PTR CHAR16, IN OUT VendorGuid PTR EFI_GUID
+macro EfiRuntimeServices.GetNextVariableName VariableNameSize, VariableName, VendorGuid {
+    EFI_RUNTIME_SERVICES_GetNexVariableName [__EFI_RUNTIME_SERVICES_TABLE_PTR__], VariableNameSize, VariableName, VendorGuid
+}
+
+; EFI_RUNTIME_SERVICES_SetVariable macro
+__EFI_CALL_5__ EFI_RUNTIME_SERVICES, SetVariable, IN VariableName PTR CHAR16, IN VendorGuid PTR EFI_GUID, IN Attributes UINT32, IN DataSize UINTN, IN Data PTR VOID
+macro EfiRuntimeServices.SetVariable VariableName, VendorGuid, Attributes, DataSize, Data {
+    EFI_RUNTIME_SERVICES_SetVariable [__EFI_RUNTIME_SERVICES_TABLE_PTR__], VariableName, VendorGuid, Attributes, DataSize, Data
+}
+
+; EFI_RUNTIME_SERVICES_QueryVariableInfo macro
+__EFI_CALL_4__ EFI_RUNTIME_SERVICES, QueryVariableInfo, IN Attributes UINT32, OUT MaximumVariableStorageSize PTR UINT64, OUT RemainingVariableStorageSize PTR UINT64, OUT MaximumVariableSize PTR UINT64
+nacro EfiRuntimeServices.QueryVariableInfo Attributes, MaximumVariableStorageSize, RemainingVariableStorageSize, MaximumVariableSize {
+    EFI_RUNTIME_SERVICES_QueryVariableInfo [__EFI_RUNTIME_SERVICES_TABLE_PTR__], Attributes, MaximumVariableStorageSize, RemainingVariableStorageSize, MaximumVariableSize
+}
