@@ -15,57 +15,57 @@ struc EFI_TIME {
 }
 __STRUCT__ EFI_TIME
 
-macro EFI_TIME.Year EfiTimePtr {
+macro EFI_TIME.GetYear EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Year]
 }
 
-macro EFI_TIME.Month EfiTimePtr {
+macro EFI_TIME.GetMonth EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Month]
 }
 
-macro EFI_TIME.Day EfiTimePtr {
+macro EFI_TIME.GetDay EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Day]
 }
 
-macro EFI_TIME.Hour EfiTimePtr {
+macro EFI_TIME.GetHour EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Hour]
 }
 
-macro EFI_TIME.Minute EfiTimePtr {
+macro EFI_TIME.GetMinute EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Minute]
 }
 
-macro EFI_TIME.Second EfiTimePtr {
+macro EFI_TIME.GetSecond EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Second]
 }
 
-macro EFI_TIME.Pad1 EfiTimePtr {
+macro EFI_TIME.GetPad1 EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Pad1]
 }
 
-macro EFI_TIME.Nanosecond EfiTimePtr {
+macro EFI_TIME.GetNanosecond EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Nanosecond]
 }
 
-macro EFI_TIME.TimeZone EfiTimePtr {
+macro EFI_TIME.GetTimeZone EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.TimeZone]
 }
 
-macro EFI_TIME.Dayligh EfiTimePtr {
+macro EFI_TIME.GetDayligh EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Dayligh]
 }
 
-macro EFI_TIME.Pad2 EfiTimePtr {
+macro EFI_TIME.GetPad2 EfiTimePtr {
     mov rax, EfiTimePtr
     mov rax, [rax + EFI_TIME.Pad2]
 }
