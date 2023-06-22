@@ -74,6 +74,36 @@ struc EFI_GRAPHICS_OUTPUT_MODE_INFORMATION {
 }
 __STRUCT__ EFI_GRAPHICS_OUTPUT_MODE_INFORMATION
 
+macro EfiGraphicsOutputModeInformation.GetVersion GopTable {
+    EfiGraphicsOutputMode.GetInfo GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_MODE_INFORMATION.Version]
+}
+
+macro EfiGraphicsOutputModeInformation.GetHorizontalResolution GopTable {
+    EfiGraphicsOutputMode.GetInfo GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_MODE_INFORMATION.HorisontalResolution]
+}
+
+macro EfiGraphicsOutputModeInformation.GetVerticalResolution GopTable {
+    EfiGraphicsOutputMode.GetInfo GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_MODE_INFORMATION.VerticalResolution]
+}
+
+macro EfiGraphicsOutputModeInformation.GetPixelFormat GopTable {
+    EfiGraphicsOutputMode.GetInfo GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_MODE_INFORMATION.PixelFormat]
+}
+
+macro EfiGraphicsOutputModeInformation.GetPixelInformation GopTable {
+    EfiGraphicsOutputMode.GetInfo GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_MODE_INFORMATION.PixelInformation]
+}
+
+macro EfiGraphicsOutputModeInformation.GetPixelsPerScanLine GopTable {
+    EfiGraphicsOutputMode.GetInfo GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_MODE_INFORMATION.PixelsPerScanLine]
+}
+
 struc EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE {
     .MaxMode            UINT32
     .Mode               UINT32
@@ -83,6 +113,36 @@ struc EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE {
     .FrameBufferSize    UINTN
 }
 __STRUCT__ EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE
+
+macro EfiGraphicsOutputMode.GetMaxMode GopTable {
+    EFI_GRAPHICS_OUTPUT_PROTOCOL.GetModeTable GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE.MaxMode]
+}
+
+macro EfiGraphicsOutputMode.GetMode GopTable {
+    EFI_GRAPHICS_OUTPUT_PROTOCOL.GetModeTable GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE.Mode]
+}
+
+macro EfiGraphicsOutputMode.GetInfo GopTable {
+    EFI_GRAPHICS_OUTPUT_PROTOCOL.GetModeTable GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE.Info]
+}
+
+macro EfiGraphicsOutputMode.GetSizeOfInfo GopTable {
+    EFI_GRAPHICS_OUTPUT_PROTOCOL.GetModeTable GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE.SizeOfInfo]
+}
+
+macro EfiGraphicsOutputMode.GetFrameBufferBase GopTable {
+    EFI_GRAPHICS_OUTPUT_PROTOCOL.GetModeTable GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE.FrameBufferBase]
+}
+
+macro EfiGraphicsOutputMode.GetFrameBufferSize GopTable {
+    EFI_GRAPHICS_OUTPUT_PROTOCOL.GetModeTable GopTable
+    mov rax, [rax + EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE.FrameBufferSize]
+}
 
 struc EFI_GRAPHICS_OUTPUT_BLT_PIXEL {
     .Blue       UINT8
