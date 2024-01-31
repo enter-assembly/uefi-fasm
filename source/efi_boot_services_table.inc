@@ -307,10 +307,17 @@ macro EfiBootServices.LocateProtocol Protocol, Registration, Interface {
 }
 
 ; EFI_BOOT_SERVICES_InstallMultipleProtocolInterfaces macro
-; TODO
+__EFI_CALL_VARARGS__ EFI_BOOT_SERVICES, InstallMultipleProtocolInterfaces, IN OUT Handle PTR EFI_HANDLE, IN Protocol PTR EFI_GUID, IN Interface PTR , ... , 0
+macro EfiBootServices.InstallMultipleProtocolInterfaces Handle, [ARGS_NULL_TERMINATED] {
+common
+    EFI_BOOT_SERVICES_InstallMultipleProtocolInterfaces [__EFI_BOOT_SERVICES_TABLE_PTR__], ARGS_NULL_TERMINATED
+}
 
 ; EFI_BOOT_SERVICES_UninstallMultipleProtocolInterfaces macro
-; TODO
+__EFI_CALL_VARARGS__ EFI_BOOT_SERVICES, UninstallMultipleProtocolInterfaces, IN Handle EFI_HANDLE, IN Protocol PTR EFI_GUID, IN Interface PTR , ... , 0
+macro EfiBootServices.UninstallMultipleProtocolInterfaces Handle, [ARGS_NULL_TERMINATED] {
+    EFI_BOOT_SERVICES_UninstallMultipleProtocolInterfaces [__EFI_BOOT_SERVICES_TABLE_PTR__], ARGS_NULL_TERMINATED
+}
 
 ; EFI_BOOT_SERVICES_CalculateCrc32 macro
 __EFI_CALL_3__ EFI_BOOT_SERVICES, CalculateCrc32, IN Data PTR VOID, IN DataSize UINTN, OUT Crc32 PTR UINT32
