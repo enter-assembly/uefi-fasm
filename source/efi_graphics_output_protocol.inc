@@ -36,7 +36,7 @@ EFI_GRAPHICS_OUTPUT_PROTOCOL.InitTable TableName, Table {
     }
 
     macro TableName#.#Blt BltBuffer, BltOperation, SourceX, SourceY, DestinationX, DestinationY, Width, Height, Delta {
-        EFI_GRAPHICS_OUTPUT_PROTOCOL_Blt [Table], [Table], BltBufferm BltOperation, SourceX, SourceY, DestinationX, DestinationY, Width, Height, Delta
+        EFI_GRAPHICS_OUTPUT_PROTOCOL_Blt [Table], [Table], BltBuffer, BltOperation, SourceX, SourceY, DestinationX, DestinationY, Width, Height, Delta
     }
 
     macro TableName#.#GetModeTable {
