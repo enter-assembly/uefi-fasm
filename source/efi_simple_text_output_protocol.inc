@@ -72,12 +72,9 @@ macro EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_InitTable TableName, Table {
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_EnableCursor [Table], [Table], Visible
     \}
 
-    macro EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.GetSimpleTextOutputModeTable EfiSimpleTextOutputTable {
-        mov rax, EfiSimpleTextOutputTable
-        mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.SimpleTextOutputModeTable]
-    }
     macro TableName#.#GetSimpleTextOutputModeTable \{
-        EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.GetSimpleTextOutputModeTable [Table]
+        mov rax, [Table]
+        mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.SimpleTextOutputModeTable]
     \}
-
+    
 }
