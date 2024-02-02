@@ -130,3 +130,9 @@ forward
     enum_name#.#value_name = value_count
     value_count = value_count + 1
 }
+
+macro __STRUCT__ NAME {
+    virtual at 0
+        NAME NAME
+    end virtual
+}

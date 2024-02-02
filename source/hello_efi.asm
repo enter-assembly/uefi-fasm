@@ -1,22 +1,20 @@
 format pe64 dll efi
 entry main
- 
+
+include '../include/efi_x64.inc'
+
 section '.data' data readable writeable
 
-include 'efi_x64_types.inc'
-include 'efi_call.inc'
-include 'efi_table.inc'
-include 'efi_system_table.inc'
-include 'efi_simple_text_output_protocol.inc'
-include 'efi_console_out_table.inc'
-include 'efi_standard_error_table.inc'
- 
+include 'efi_table/efi_system_table.inc'
+include 'efi_table/efi_console_out_table.inc'
+include 'efi_table/efi_standard_error_table.inc'
+
 section '.text' code executable readable
 
 main:
     EfiSystemTable.Init
-    EfiConsoleOut.Init
-    EfiStandardError.Init
+    EfiConsoleOut.Init EfiSystemTable
+    EfiStandardError.Init EfiSystemTable
 
     EfiConsoleOut.EnableCursor 1
     EfiConsoleOut.ClearScreen
