@@ -275,48 +275,28 @@ common
     macro PROTOCOL#_#FUNCTION TABLE, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11 \{
         if ~ arg11 eq
             __EFI_11_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11
-        else
-        if ~ arg10 eq
+        else if ~ arg10 eq
             __EFI_10_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10
-        else
-        if ~ arg9 eq
+        else if ~ arg9 eq
             __EFI_9_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9
-        else
-        if ~ arg8 eq
+        else if ~ arg8 eq
             __EFI_8_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8
-        else
-        if ~ arg7 eq
+        else if ~ arg7 eq
             __EFI_7_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2, arg3, arg4, arg5, arg6, arg7
-        else
-        if ~ arg6 eq
+        else if ~ arg6 eq
             __EFI_6_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2, arg3, arg4, arg5, arg6
-        else
-        if ~ arg5 eq
+        else if ~ arg5 eq
             __EFI_5_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2, arg3, arg4, arg5
-        else
-        if ~ arg4 eq
+        else if ~ arg4 eq
             __EFI_4_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2, arg3, arg4
-        else
-        if ~ arg3 eq
+        else if ~ arg3 eq
             __EFI_3_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2, arg3
-        else
-        if ~ arg2 eq
+        else if ~ arg2 eq
             __EFI_2_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1, arg2
-        else
-        if ~ arg1 eq
+        else if ~ arg1 eq
             __EFI_1_ARGS_CALL TABLE, PROTOCOL, FUNCTION, arg1
         else
             __EFI_0_ARGS_CALL TABLE, PROTOCOL, FUNCTION
-        end if
-        end if
-        end if
-        end if
-        end if
-        end if
-        end if
-        end if
-        end if
-        end if
         end if
     \}
 }
