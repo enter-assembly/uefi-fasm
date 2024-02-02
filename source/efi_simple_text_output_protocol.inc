@@ -16,68 +16,66 @@ struc EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL {
 }
 __STRUCT__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL
 
-; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_Reset macro
-__EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, Reset, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN ExtendedVerification BOOLEAN
-; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_OutputString macro
-__EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, OutputString, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN String PTR CHAR16
-; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_TestString macro
-__EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, TestString, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN String PTR CHAR16
-; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_QueryMode macro
-__EFI_CALL_4__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, QueryMode, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN ModeNumber UINTN, OUT Columns PTR UINTN, OUT Rows PTR UINTN
-; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetMode macro
-__EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, SetMode, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN ModeNumber UINTN
-; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetAttribute macro
-__EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, SetAttribute, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN Attribute UINTN
-; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_ClearScreen macro
-__EFI_CALL_1__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, ClearScreen, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE
-; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetCursorPosition macro
-__EFI_CALL_3__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, SetCursorPosition, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN Column UINTN, IN Row UINTN
-; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_EnableCursor macro
-__EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, EnableCursor, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN Visible BOOLEAN
-
-macro EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.GetSimpleTextOutputModeTable EfiSimpleTextOutputTable {
-    mov rax, EfiSimpleTextOutputTable
-    mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.SimpleTextOutputModeTable]
-}
-
 macro EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_InitTable TableName, Table {
 
+    ; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_Reset macro
+    __EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, Reset, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN ExtendedVerification BOOLEAN
     macro TableName#.#Reset ExtendedVerification \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_Reset [Table], [Table], ExtendedVerification
     \}
 
+    ; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_OutputString macro
+    __EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, OutputString, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN String PTR CHAR16
     macro TableName#.#OutputString String \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_OutputString [Table], [Table], String
     \}
 
+    ; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_TestString macro
+    __EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, TestString, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN String PTR CHAR16
     macro TableName#.#TestString String \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_TestString [Table], [Table], String
     \}
 
+    ; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_QueryMode macro
+    __EFI_CALL_4__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, QueryMode, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN ModeNumber UINTN, OUT Columns PTR UINTN, OUT Rows PTR UINTN
     macro TableName#.#QueryMode ModeNumber, Columns, Rows \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_QueryMode [Table], [Table], ModeNumber, Columns, Rows
     \}
 
+    ; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetMode macro
+    __EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, SetMode, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN ModeNumber UINTN
     macro TableName#.#SetMode ModeNumber \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetMode [Table], [Table], ModeNumber
     \}
 
+    ; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetAttribute macro
+    __EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, SetAttribute, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN Attribute UINTN
     macro TableName#.#SetAttribute Attribute \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetAttribute [Table], [Table], Attribute
     \}
 
+    ; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_ClearScreen macro
+    __EFI_CALL_1__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, ClearScreen, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE
     macro TableName#.#ClearScreen \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_ClearScreen [Table], [Table]
     \}
 
+    ; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetCursorPosition macro
+    __EFI_CALL_3__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, SetCursorPosition, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN Column UINTN, IN Row UINTN
     macro TableName#.#SetCursorPosition Column, Row \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_SetCursorPosition [Table], [Table], Column, Row
     \}
 
+    ; EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_EnableCursor macro
+    __EFI_CALL_2__ EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, EnableCursor, IN This PTR EFI_SIMPLE_TEXT_OUTPUT_TABLE, IN Visible BOOLEAN
     macro TableName#.#EnableCursor Visible \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_EnableCursor [Table], [Table], Visible
     \}
 
+    macro EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.GetSimpleTextOutputModeTable EfiSimpleTextOutputTable {
+        mov rax, EfiSimpleTextOutputTable
+        mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.SimpleTextOutputModeTable]
+    }
     macro TableName#.#GetSimpleTextOutputModeTable \{
         EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.GetSimpleTextOutputModeTable [Table]
     \}
