@@ -1,6 +1,5 @@
 ; EFI Console In Table
 
-section '.data' readable writeable
 __EFI_CONSOLE_IN_TABLE_PTR__ PTR EFI_SIMPLE_TEXT_INPUT_PROTOCOL
 
 macro EfiConsoleIn.Init {
