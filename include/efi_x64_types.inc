@@ -136,3 +136,7 @@ macro __STRUCT__ NAME {
         NAME NAME
     end virtual
 }
+
+NULL    equ 0
+FALSE   equ 0
+TRUE    equ 1
