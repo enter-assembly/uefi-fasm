@@ -91,7 +91,7 @@ macro EFI_GRAPHICS_OUTPUT_Init __NAME, __PTR {
     \}
 
     macro __NAME#.#GetModeTable \{
-        mov rax, __PTR
+        mov rax, [__PTR]
         mov rax, [rax + EFI_GRAPHICS_OUTPUT.ModeTable]
     \}
 
