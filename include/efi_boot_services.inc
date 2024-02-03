@@ -331,6 +331,7 @@ macro EFI_BOOT_SERVICES_Init __NAME, __PTR {
     ; EFI_BOOT_SERVICES_UninstallMultipleProtocolInterfaces macro
     __EFI_CALL_VARARGS__ EFI_BOOT_SERVICES, UninstallMultipleProtocolInterfaces, IN Handle EFI_HANDLE, IN Protocol PTR EFI_GUID, IN Interface PTR , ... , 0
     macro __NAME#.#UninstallMultipleProtocolInterfaces Handle, [ARGS_NULL_TERMINATED] \{
+    common
         EFI_BOOT_SERVICES_UninstallMultipleProtocolInterfaces [__PTR], ARGS_NULL_TERMINATED
     \}
 
