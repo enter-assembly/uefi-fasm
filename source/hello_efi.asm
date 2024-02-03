@@ -17,6 +17,9 @@ __BLUE__ EFI_GRAPHICS_OUTPUT_BLT_PIXEL 0xff, 0, 0
 __GREEN__ EFI_GRAPHICS_OUTPUT_BLT_PIXEL 0, 255, 0
 __RED__ EFI_GRAPHICS_OUTPUT_BLT_PIXEL 0, 0, 255
 
+__CONSOLE_IN PTR EFI_SIMPLE_TEXT_INPUT
+__INPUT_KEY EFI_INPUT_KEY
+
 section '.text' code executable readable
 
 main:
@@ -47,18 +50,47 @@ main:
     jmp .exit
     .ok:
     EfiConsoleOut.OutputString _ok
+
+    EfiSystemTable.GetConsoleInTable
+    mov [__CONSOLE_IN], rax
+    EFI_SIMPLE_TEXT_INPUT_Init Cin, __CONSOLE_IN
+
+    .read_key:
+        Cin.ReadKeyStroke __INPUT_KEY
+        test rax, rax
+
+    ; read failed
+        jne .read_key
+
+    ; read ok
+        mov ax, [__INPUT_KEY + EFI_INPUT_KEY.UnicodeChar]
+        mov [__output_key], ax
+        EfiConsoleOut.OutputString __output_key
+        jmp .read_key
+
     .exit:
     jmp $
     retn
 
 ; rax - error
 print_error:
+    push rdx
     cmp rax, 0
     jne .fail
+    pop rdx
     EfiConsoleOut.OutputString __EFI_SUCCESS
     EfiConsoleOut.OutputString _new_line
     ret
         .fail:
+    mov rdx, EFI_NOT_READY
+    test rax, rdx
+    jne @f
+    pop rdx
+    EfiConsoleOut.OutputString __EFI_NOT_READY
+    EfiConsoleOut.OutputString _new_line
+    ret
+    @@:
+    pop rdx
     EfiConsoleOut.OutputString __EFI_ERROR
     EfiConsoleOut.OutputString _new_line
     ret
@@ -70,6 +102,8 @@ _new_line du 13, 10, 0
 _ready du "Ready", 13, 10, 0
 _ok du "Ok", 13, 10, 0
 _failed du "Failed", 13, 10, 0
+
+__output_key du 0, 0
  
 hello_string du 'Hello, Uefi!!!',13,10,0
 error_string du 'This is error string',13,10,0
