@@ -50,11 +50,11 @@ struc EFI_GRAPHICS_OUTPUT_MODE_INFORMATION {
 }
 __STRUCT__ EFI_GRAPHICS_OUTPUT_MODE_INFORMATION
 
-struc EFI_GRAPHICS_OUTPUT_BLT_PIXEL {
-    .Blue       UINT8
-    .Green      UINT8
-    .Red        UINT8
-    .Reseved    UINT8
+struc EFI_GRAPHICS_OUTPUT_BLT_PIXEL BLUE, GREEN, RED {
+    .Blue       UINT8   BLUE
+    .Green      UINT8   GREEN
+    .Red        UINT8   RED
+    .Reseved    UINT8   NULL
 }
 __STRUCT__ EFI_GRAPHICS_OUTPUT_BLT_PIXEL
 
