@@ -1,40 +1,51 @@
 ; EFI x64 types
 
-macro __ALIGN__ _align {
-if ~ _align eq
-    align _align
+macro __TYPE__ __typename, __data_mnemonic, __align {
+    struc __typename [__value] \{
+    \common
+    if ~ __align eq
+        align __align
+    end if
+    if __value eq
+        . __data_mnemonic ?
+    else
+        . __data_mnemonic __value
+    end if
+    \}
+}
+
+struc ARRAY __typename, __size, __value, [__values] {
+common
+    __vc = 0
+forward
+    __vc = __vc + 1
+common
+if ~ __values eq
+    if ~ __size = __vc + 1
+        'error: sizeof(' __value, __values ') !=' __size
+    end if
+    . __typename __value, __values
+else if ~ __value eq
+    . __typename __size dup(__value)
+else
+    . __typename __size dup(?)
 end if
 }
 
-macro __TYPE__ typename, data_mnemonic, _align {
-    struc typename value \{
-        __ALIGN__ _align
-    if value eq
-        . data_mnemonic ?
-    else
-        . data_mnemonic value
-    end if
-    \}
+struc EFI_STRING [__value] {
+common
+    . CHAR16 __value, 0
+}
 
-    struc typename#_ARR size, [value] \{
-    \common
-        __ALIGN__ _align
-    if size eq
-        "error: arr size is null"
-    end if
-        vc = 0
-    \forward
-        vc = vc + 1
-    \common
-    if value eq
-        . data_mnemonic size dup(?)
-    else
-        if ~ size = vc
-            "error: data values count != " size
-        end if
-        . data_mnemonic value
-    end if
-    \}
+EFI_NEW_LINE equ 0xD, 0xA
+
+struc EFI_STRING_NL [__value] {
+common
+if ~ __value eq
+    . CHAR16 __value, EFI_NEW_LINE, 0
+else
+    . CHAR16 EFI_NEW_LINE, 0
+end if
 }
 
 ALIGN_1 equ 1
@@ -56,85 +67,83 @@ __TYPE__ UINT64,  dq, ALIGN_8
 __TYPE__ CHAR8,   db, ALIGN_1
 __TYPE__ CHAR16,  du, ALIGN_2
 
-struc PTR typename, value {
-    . UINT64 value
+struc PTR __typename, __value {
+    . UINT64 __value
 }
 
-struc EFI_PHYSICAL_ADDRESS value {
-    . PTR VOID, value
+struc EFI_PHYSICAL_ADDRESS __value {
+    . PTR VOID, __value
 }
 
-struc EFI_GUID data1, data2, data3, [data4] {
+struc EFI_GUID __data1, __data2, __data3, [__data4] {
 common
-    .data1 UINT32 data1
-    .data2 UINT16 data2
-    .data3 UINT16 data3
-    .data4 UINT8_ARR 8, data4
+    .data1 UINT32 __data1
+    .data2 UINT16 __data2
+    .data3 UINT16 __data3
+    .data4 ARRAY UINT8, 8, __data4
 }
 
-struc EFI_STATUS value {
-    . INTN value
+struc EFI_STATUS __value {
+    . INTN __value
 }
 
-struc EFI_HANDLE value {
-    . PTR VOID, value
+struc EFI_HANDLE __value {
+    . PTR VOID, __value
 }
 
-struc EFI_EVENT value {
-    . PTR VOID, value
+struc EFI_EVENT __value {
+    . PTR VOID, __value
 }
 
-struc EFI_LBA value {
-    . UINT64 value
+struc EFI_LBA __value {
+    . UINT64 __value
 }
 
-struc EFI_TPL value {
-    . UINTN value
+struc EFI_TPL __value {
+    . UINTN __value
 }
 
-struc EFI_MAC_ADDRESS [value] {
-    . UINT8_ARR 32, value
+struc EFI_MAC_ADDRESS [__value] {
+    . ARRAY UINT8, 32, __value
 }
 
-struc EFI_IPv4_ADDRESS [value] {
-    . UINT8_ARR 4, value
+struc EFI_IPv4_ADDRESS [__value] {
+    . ARRAY UINT8, 4, __value
 }
 
-struc EFI_IPv6_ADDRESS [value] {
-    . UINT8_ARR 16, value
+struc EFI_IPv6_ADDRESS [__value] {
+    . ARRAY UINT8, 16, __value
 }
 
-struc EFI_IP_ADDRESS [value] {
-    . UINT32_ARR 4, value
+struc EFI_IP_ADDRESS [__value] {
+    . ARRAY UINT32, 4, __value
 }
 
-struc EFI_SIGNATURE value {
-    . UINT64 value
+struc EFI_SIGNATURE __value {
+    . UINT64 __value
 }
 
-macro ENUM enum_name, [value_name] {
+macro ENUM __enum_name, [__value_name] {
 common
-    struc enum_name value \{
-    if value eq
+    struc __enum_name __value \{
+    if __value eq
         . UINT32
+    else if ~ __value in <__value_name>
+        'error: no value' __value 'in' __value_name
     else
-        if ~ value in <value_name>
-            "error: unknown value" value ". use" value_name
-        else
-            . UINT32 enum_name#.\#value
-        end if
+        . UINT32 __enum_name#.\#__value
     end if
     \}
-    value_count = 0
+    __vc = 0
 forward
-    enum_name#.#value_name = value_count
-    value_count = value_count + 1
+    __enum_name#.#__value_name = __vc
+    __vc = __vc + 1
 }
 
-macro __STRUCT__ NAME {
-    virtual at 0
-        NAME NAME
-    end virtual
+macro __STRUCT__ __name {
+virtual at 0
+    __name __name
+end virtual
 }
 
 NULL    equ 0

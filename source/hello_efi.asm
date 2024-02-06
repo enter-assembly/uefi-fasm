@@ -97,16 +97,16 @@ print_error:
 
 section '.data' data readable writeable
 
-_looking_for_message du "Looking for Graphics Output Protocol", 13, 10, 0
-_new_line du 13, 10, 0
-_ready du "Ready", 13, 10, 0
-_ok du "Ok", 13, 10, 0
-_failed du "Failed", 13, 10, 0
+_looking_for_message    EFI_STRING_NL "Looking for Graphics Output Protocol"
+_new_line               EFI_STRING_NL
+_ready                  EFI_STRING_NL "Ready"
+_ok                     EFI_STRING_NL "Ok"
+_failed                 EFI_STRING_NL "Failed"
 
-__output_key du 0, 0
+hello_string    EFI_STRING_NL 'Hello, Uefi!!!'
+error_string    EFI_STRING_NL 'This is error string'
+
+__output_key    EFI_STRING 0
  
-hello_string du 'Hello, Uefi!!!',13,10,0
-error_string du 'This is error string',13,10,0
-
 section '.reloc' fixups data discardable
 
