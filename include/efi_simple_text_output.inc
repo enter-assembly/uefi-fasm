@@ -92,29 +92,29 @@ macro EFI_SIMPLE_TEXT_OUTPUT_Init __NAME, __PTR {
         mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_MODE.MaxMode]
     \}
 
-    macro __NAME#.#Mode#.#GetMode EfiSimpleTextOutputTablePtr \{
+    macro __NAME#.#Mode#.#GetMode \{
         __NAME#.#GetMode
         mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_MODE.Mode]
     \}
 
-    macro __NAME#.#Mode#.#GetAttribute EfiSimpleTextOutputTablePtr \{
+    macro __NAME#.#Mode#.#GetAttribute \{
         __NAME#.#GetMode
         mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_MODE.Attribute]
     \}
 
-    macro __NAME#.#Mode#.#GetCursorColumln EfiSimpleTextOutputTablePtr \{
+    macro __NAME#.#Mode#.#GetCursorColumln \{
         __NAME#.#GetMode
-        mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_MODE_.CursorColumn]
+        mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_MODE.CursorColumn]
     \}
 
-    macro __NAME#.#Mode#.#GetCursorRow EfiSimpleTextOutputTablePtr \{
+    macro __NAME#.#Mode#.#GetCursorRow \{
         __NAME#.#GetMode
         mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_MODE.CursorRow]
     \}
 
-    macro __NAME#.#Mode#.#GetCursorVisible EfiSimpleTextOutputTablePtr \{
+    macro __NAME#.#Mode#.#GetCursorVisible \{
         __NAME#.#GetMode
-        mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_MODE_.CursorVisible]
+        mov rax, [rax + EFI_SIMPLE_TEXT_OUTPUT_MODE.CursorVisible]
     \}
     
 }
