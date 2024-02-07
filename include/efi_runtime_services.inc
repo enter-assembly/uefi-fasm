@@ -31,7 +31,7 @@ struc EFI_RUNTIME_SERVICES {
     ; Miscellaneous UEFI 2.0 Service
     .QueryVariableInfo  PTR EFI_RUNTIME_SERVICES_QueryVariableInfo
 }
-__STRUCT__ EFI_RUNTIME_SERVICES
+STRUCT EFI_RUNTIME_SERVICES
 
 macro EFI_RUNTIME_SERVICES_Init __NAME, __PTR {
 

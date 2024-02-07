@@ -7,13 +7,13 @@ struc EFI_SIMPLE_TEXT_INPUT {
     .ReadKeyStroke      PTR EFI_SIMPLE_TEXT_INPUT_ReadKeyStroke
     .WaitForKeyEvent    PTR EFI_EVENT
 }
-__STRUCT__ EFI_SIMPLE_TEXT_INPUT
+STRUCT EFI_SIMPLE_TEXT_INPUT
 
 struc EFI_INPUT_KEY {
-    .ScanCode       UINT16
-    .UnicodeChar    CHAR16
+    .ScanCode       UINT16A
+    .UnicodeChar    CHAR16A
 }
-__STRUCT__ EFI_INPUT_KEY
+STRUCT EFI_INPUT_KEY
 
 macro EFI_SIMPLE_TEXT_INPUT_Init __NAME, __PTR {
 

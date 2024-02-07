@@ -5,7 +5,7 @@ EFI_SYSTEM_SIGNATURE fix 0x5453595320494249
 struc EFI_SYSTEM {
     .Header                 EFI_TABLE_HEADER
     .FirmwareVendor         PTR CHAR16
-    .FirmwareRevision       UINT32
+    .FirmwareRevision       UINT32A
     .ConsoleInHandle        EFI_HANDLE
     .ConsoleInTable         PTR EFI_SIMPLE_TEXT_INPUT
     .ConsoleOutHandle       EFI_HANDLE
@@ -14,16 +14,16 @@ struc EFI_SYSTEM {
     .StandardErrorTable     PTR EFI_SIMPLE_TEXT_OUTPUT
     .RuntimeServicesTable   PTR EFI_RUNTIME_SERVICES
     .BootServicesTable      PTR EFI_BOOT_SERVICES
-    .NumberOfTableEntries   UINTN
+    .NumberOfTableEntries   UINTNA
     .ConfigurationTable     PTR EFI_CONFIGURATION_TABLE
 }
-__STRUCT__ EFI_SYSTEM
+STRUCT EFI_SYSTEM
 
 struc EFI_CONFIGURATION_TABLE {
     .VendorGuid     EFI_GUID
     .VendorTable    PTR VOID
 }
-__STRUCT__ EFI_CONFIGURATION_TABLE
+STRUCT EFI_CONFIGURATION_TABLE
 
 macro EFI_SYSTEM_Init __NAME, __PTR {
 

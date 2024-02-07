@@ -14,17 +14,17 @@ struc EFI_SIMPLE_TEXT_OUTPUT {
     .EnableCursor               PTR EFI_SIMPLE_TEXT_OUTPUT_EnableCursor
     .Mode                       PTR EFI_SIMPLE_TEXT_OUTPUT_MODE
 }
-__STRUCT__ EFI_SIMPLE_TEXT_OUTPUT
+STRUCT EFI_SIMPLE_TEXT_OUTPUT
 
 struc EFI_SIMPLE_TEXT_OUTPUT_MODE {
-    .MaxMode        INT32
-    .Mode           INT32
-    .Attribute      INT32
-    .CursorColumn   INT32
-    .CursorRow      INT32
-    .CursorVisible  BOOLEAN
+    .MaxMode        INT32A
+    .Mode           INT32A
+    .Attribute      INT32A
+    .CursorColumn   INT32A
+    .CursorRow      INT32A
+    .CursorVisible  BOOLA
 }
-__STRUCT__ EFI_SIMPLE_TEXT_OUTPUT_MODE
+STRUCT EFI_SIMPLE_TEXT_OUTPUT_MODE
 
 macro EFI_SIMPLE_TEXT_OUTPUT_Init __NAME, __PTR {
 

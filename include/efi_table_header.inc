@@ -1,13 +1,13 @@
 ; EFI Table Header
 
 struc EFI_TABLE_HEADER {
-    .Signature  UINT64
-    .Revision   UINT32
-    .HeaderSize UINT32
-    .CRC32      UINT32
-    .Reserved   UINT32
+    .Signature  UINT64A
+    .Revision   UINT32A
+    .HeaderSize UINT32A
+    .CRC32      UINT32A
+    .Reserved   UINT32A
 }
-__STRUCT__ EFI_TABLE_HEADER
+STRUCT EFI_TABLE_HEADER
 
 macro EFI_TABLE_HEADER_CreateGetFunctions __NAME, __PTR {
 

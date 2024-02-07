@@ -1,19 +1,19 @@
 ; EFI Time
 
 struc EFI_TIME {
-    .Year       UINT16
-    .Month      UINT8
-    .Day        UINT8
-    .Hour       UINT8
-    .Minute     UINT8
-    .Second     UINT8
-    .Pad1       UINT8
-    .Nanosecond UINT32
-    .TimeZone   INT16
-    .Dayligh    UINT8
-    .Pad2       UINT8
+    .Year       UINT16A
+    .Month      UINT8A
+    .Day        UINT8A
+    .Hour       UINT8A
+    .Minute     UINT8A
+    .Second     UINT8A
+    .Pad1       UINT8A
+    .Nanosecond UINT32A
+    .TimeZone   INT16A
+    .Dayligh    UINT8A
+    .Pad2       UINT8A
 }
-__STRUCT__ EFI_TIME
+STRUCT EFI_TIME
 
 macro EFI_TIME.GetYear EfiTimePtr {
     mov rax, EfiTimePtr

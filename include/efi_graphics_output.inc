@@ -8,24 +8,24 @@ struc EFI_GRAPHICS_OUTPUT {
     .Blt        PTR EFI_GRAPHICS_OUTPUT_Blt
     .ModeTable  PTR EFI_GRAPHICS_OUTPUT_MODE
 }
-__STRUCT__ EFI_GRAPHICS_OUTPUT
+STRUCT EFI_GRAPHICS_OUTPUT
 
 struc EFI_GRAPHICS_OUTPUT_MODE {
-    .MaxMode            UINT32
-    .Mode               UINT32
+    .MaxMode            UINT32A
+    .Mode               UINT32A
     .Info               PTR EFI_GRAPHICS_OUTPUT_MODE_INFORMATION
-    .SizeOfInfo         UINTN
+    .SizeOfInfo         UINTNA
     .FrameBufferBase    EFI_PHYSICAL_ADDRESS
-    .FrameBufferSize    UINTN
+    .FrameBufferSize    UINTNA
 }
-__STRUCT__ EFI_GRAPHICS_OUTPUT_MODE
+STRUCT EFI_GRAPHICS_OUTPUT_MODE
 
 ;RGBR     - PixelRedGreenBlueReseved8BitPerColor
 ;BGRR     - PixelBlueRedGreenReseved8BitPerColor
 ;BIT_MASK - PixelBitMask
 ;BLT_ONLY - PixelBltOnly
 ;MAX      - PixelFormatMax
-ENUM EFI_GRAPHICS_PIXEL_FORMAT, \
+__ENUM__ INT32, EFI_GRAPHICS_PIXEL_FORMAT, \
     RGBR, \
     BGRR, \
     BIT_MASK, \
@@ -33,37 +33,37 @@ ENUM EFI_GRAPHICS_PIXEL_FORMAT, \
     MAX
 
 struc EFI_PIXEL_BITMASK {
-    .RedMask        UINT32
-    .GreenMask      UINT32
-    .BlueMask       UINT32
-    .ResevedMask    UINT32
+    .RedMask        UINT32A
+    .GreenMask      UINT32A
+    .BlueMask       UINT32A
+    .ResevedMask    UINT32A
 }
-__STRUCT__ EFI_PIXEL_BITMASK
+STRUCT EFI_PIXEL_BITMASK
 
 struc EFI_GRAPHICS_OUTPUT_MODE_INFORMATION {
-    .Version                 UINT32
-    .HorisontalResolution    UINT32
-    .VerticalResolution      UINT32
+    .Version                 UINT32A
+    .HorisontalResolution    UINT32A
+    .VerticalResolution      UINT32A
     .PixelFormat             EFI_GRAPHICS_PIXEL_FORMAT
     .PixelInformation        EFI_PIXEL_BITMASK
-    .PixelsPerScanLine       UINT32
+    .PixelsPerScanLine       UINT32A
 }
-__STRUCT__ EFI_GRAPHICS_OUTPUT_MODE_INFORMATION
+STRUCT EFI_GRAPHICS_OUTPUT_MODE_INFORMATION
 
 struc EFI_GRAPHICS_OUTPUT_BLT_PIXEL BLUE, GREEN, RED {
-    .Blue       UINT8   BLUE
-    .Green      UINT8   GREEN
-    .Red        UINT8   RED
-    .Reseved    UINT8   NULL
+    .Blue       UINT8A   BLUE
+    .Green      UINT8A   GREEN
+    .Red        UINT8A   RED
+    .Reseved    UINT8A   NULL
 }
-__STRUCT__ EFI_GRAPHICS_OUTPUT_BLT_PIXEL
+STRUCT EFI_GRAPHICS_OUTPUT_BLT_PIXEL
 
 ; VFILL - EfiBltVideoFill
 ; VTOBUF - EfiBltVideoToBltBuffer
 ; BUFTOV - EfiBltBufferToVideo 
 ; VTOV - EfiBltVideoToVideo
 ; MAX - EfiGraphicsOutputBltOperationMax
-ENUM EFI_GRAPHICS_OUTPUT_BLT_OPERATION, \
+__ENUM__ INT32, EFI_GRAPHICS_OUTPUT_BLT_OPERATION, \
     VFILL, \
     VTOBUF, \
     BUFTOV, \

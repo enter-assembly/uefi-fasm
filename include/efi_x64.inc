@@ -1,5 +1,8 @@
 ; EFIx64
 
+include 'stdmacro.inc'
+include 'stdtype.inc'
+
 include 'efi_x64_types.inc'
 include 'efi_call.inc'
 include 'efi_error.inc'
