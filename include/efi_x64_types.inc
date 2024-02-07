@@ -16,12 +16,8 @@ else
 end if
 }
 
-struc PTR __typename, __value {
-    . UINTNA __value
-}
-
 struc EFI_PHYSICAL_ADDRESS __value {
-    . PTR VOID, __value
+    . PTRA VOID, __value
 }
 
 struc EFI_GUID __data1, __data2, __data3, [__data4] {
@@ -37,11 +33,11 @@ struc EFI_STATUS __value {
 }
 
 struc EFI_HANDLE __value {
-    . PTR VOID, __value
+    . PTRA VOID, __value
 }
 
 struc EFI_EVENT __value {
-    . PTR VOID, __value
+    . PTRA VOID, __value
 }
 
 struc EFI_LBA __value {

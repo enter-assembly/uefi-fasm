@@ -1,6 +1,7 @@
 ; EFIx64
 
 include 'stdmacro.inc'
+include 'stdsize64.inc'
 include 'stdtype.inc'
 
 include 'efi_x64_types.inc'
