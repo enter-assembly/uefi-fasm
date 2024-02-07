@@ -4,8 +4,8 @@ include 'stdmacro.inc'
 include 'stdsize64.inc'
 include 'stdtype.inc'
 
-include 'efi_x64_types.inc'
-include 'efi_call.inc'
+include 'efi_call_x64.inc'
+include 'efi_types.inc'
 include 'efi_error.inc'
 
 include 'efi_table_header.inc'
